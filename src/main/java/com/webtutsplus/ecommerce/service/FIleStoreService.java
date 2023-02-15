@@ -1,7 +1,7 @@
 package com.webtutsplus.ecommerce.service;
 
 import com.webtutsplus.ecommerce.config.StorageProperties;
-import com.webtutsplus.ecommerce.exceptions.StorageException;
+import com.webtutsplus.ecommerce.enums.exceptions.StorageException;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -21,8 +21,7 @@ import java.util.stream.Stream;
 
 @Service
 public class FIleStoreService {
-
-    private StorageProperties properties = new StorageProperties();
+    StorageProperties properties = new StorageProperties();
     Path rootLocation = Paths.get(properties.getLocation());
 
     public String store(MultipartFile file) {
@@ -33,17 +32,16 @@ public class FIleStoreService {
             String extension = FilenameUtils.getExtension(file.getOriginalFilename());
             String uploadedFileName = UUID.randomUUID() + "." + extension;
             Path destinationFile = rootLocation.resolve(
-                    Paths.get(uploadedFileName))
+                            Paths.get(uploadedFileName))
                     .normalize().toAbsolutePath();
             try (InputStream inputStream = file.getInputStream()) {
                 Files.copy(inputStream, destinationFile,
                         StandardCopyOption.REPLACE_EXISTING);
                 final String baseUrl =
                         ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
-                return baseUrl+"/fileUpload/files/"+uploadedFileName;
+                return baseUrl + "/fileUpload/files/" + uploadedFileName;
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new StorageException("Failed to store file.", e);
         }
     }
@@ -53,8 +51,7 @@ public class FIleStoreService {
             return Files.walk(this.rootLocation, 1)
                     .filter(path -> !path.equals(this.rootLocation))
                     .map(this.rootLocation::relativize);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new StorageException("Failed to read stored files", e);
         }
 

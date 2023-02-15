@@ -1,4 +1,4 @@
-package com.webtutsplus.ecommerce.exceptions;
+package com.webtutsplus.ecommerce.enums.exceptions;
 
 public class ValidationException extends RuntimeException{
 	private static final long serialVersionUID = 6064663768170825752L;

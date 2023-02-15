@@ -1,4 +1,4 @@
-package com.webtutsplus.ecommerce.exceptions;
+package com.webtutsplus.ecommerce.enums.exceptions;
 
 public class StorageException extends RuntimeException {
 

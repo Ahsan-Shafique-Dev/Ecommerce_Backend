@@ -9,8 +9,8 @@ import com.webtutsplus.ecommerce.dto.user.SignupDto;
 import com.webtutsplus.ecommerce.dto.user.UserCreateDto;
 import com.webtutsplus.ecommerce.enums.ResponseStatus;
 import com.webtutsplus.ecommerce.enums.Role;
-import com.webtutsplus.ecommerce.exceptions.AuthenticationFailException;
-import com.webtutsplus.ecommerce.exceptions.CustomException;
+import com.webtutsplus.ecommerce.enums.exceptions.AuthenticationFailException;
+import com.webtutsplus.ecommerce.enums.exceptions.CustomException;
 import com.webtutsplus.ecommerce.model.AuthenticationToken;
 import com.webtutsplus.ecommerce.model.User;
 import com.webtutsplus.ecommerce.repository.UserRepository;
@@ -29,10 +29,8 @@ import static com.webtutsplus.ecommerce.config.MessageStrings.USER_CREATED;
 
 @Service
 public class UserService {
-
     @Autowired
     UserRepository userRepository;
-
     @Autowired
     AuthenticationService authenticationService;
 

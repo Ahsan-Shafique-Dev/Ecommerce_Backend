@@ -7,7 +7,5 @@ import com.webtutsplus.ecommerce.model.Category;
 
 @Repository
 public interface Categoryrepository extends JpaRepository<Category, Integer> {
-
 	Category findByCategoryName(String categoryName);
-
 }

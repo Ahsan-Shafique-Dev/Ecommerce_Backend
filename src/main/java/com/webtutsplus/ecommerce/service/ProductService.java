@@ -1,7 +1,7 @@
 package com.webtutsplus.ecommerce.service;
 
 import com.webtutsplus.ecommerce.dto.product.ProductDto;
-import com.webtutsplus.ecommerce.exceptions.ProductNotExistException;
+import com.webtutsplus.ecommerce.enums.exceptions.ProductNotExistException;
 import com.webtutsplus.ecommerce.model.Category;
 import com.webtutsplus.ecommerce.model.Product;
 import com.webtutsplus.ecommerce.repository.ProductRepository;
@@ -15,12 +15,12 @@ import java.util.Optional;
 @Service
 public class ProductService {
     @Autowired
-    private ProductRepository productRepository;
+    ProductRepository productRepository;
 
     public List<ProductDto> listProducts() {
         List<Product> products = productRepository.findAll();
         List<ProductDto> productDtos = new ArrayList<>();
-        for(Product product : products) {
+        for (Product product : products) {
             ProductDto productDto = getDtoFromProduct(product);
             productDtos.add(productDto);
         }
@@ -48,13 +48,10 @@ public class ProductService {
         productRepository.save(product);
     }
 
-
     public Product getProductById(Integer productId) throws ProductNotExistException {
         Optional<Product> optionalProduct = productRepository.findById(productId);
         if (!optionalProduct.isPresent())
-            throw new ProductNotExistException("Product id is invalid " + productId);
+            throw new ProductNotExistException("Product id is invalid: " + productId);
         return optionalProduct.get();
     }
-
-
 }

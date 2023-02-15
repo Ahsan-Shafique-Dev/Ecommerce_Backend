@@ -7,12 +7,10 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
-import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,7 +19,6 @@ import java.util.stream.Stream;
 @RestController
 @RequestMapping("/fileUpload")
 public class FileUploadController {
-
     @Autowired
     FIleStoreService fileStoreService;
 
@@ -40,8 +37,6 @@ public class FileUploadController {
 
             return new FileInfo(filename, url);
         }).collect(Collectors.toList());
-
-        Stream<Path> pathStream = fileStoreService.loadAll();
         return ResponseEntity.status(HttpStatus.OK).body(fileInfos);
     }
 
@@ -51,5 +46,4 @@ public class FileUploadController {
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"").body(file);
     }
-
 }

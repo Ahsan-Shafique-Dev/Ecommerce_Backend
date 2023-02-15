@@ -1,17 +1,17 @@
 package com.webtutsplus.ecommerce.service;
 
-import java.util.List;
-import javax.transaction.Transactional;
 import com.webtutsplus.ecommerce.model.WishList;
 import com.webtutsplus.ecommerce.repository.WishListRepository;
 import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
+import java.util.List;
 
 
 @Service
 @Transactional
 public class WishListService {
-
-    private final WishListRepository wishListRepository;
+    final WishListRepository wishListRepository;
 
     public WishListService(WishListRepository wishListRepository) {
         this.wishListRepository = wishListRepository;

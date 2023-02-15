@@ -1,4 +1,4 @@
-package com.webtutsplus.ecommerce.exceptions;
+package com.webtutsplus.ecommerce.enums.exceptions;
 
 public class AuthenticationFailException extends IllegalArgumentException {
     public AuthenticationFailException(String msg) {

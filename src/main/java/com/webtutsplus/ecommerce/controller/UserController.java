@@ -5,8 +5,8 @@ import com.webtutsplus.ecommerce.dto.*;
 import com.webtutsplus.ecommerce.dto.user.SignInDto;
 import com.webtutsplus.ecommerce.dto.user.SignInResponseDto;
 import com.webtutsplus.ecommerce.dto.user.SignupDto;
-import com.webtutsplus.ecommerce.exceptions.AuthenticationFailException;
-import com.webtutsplus.ecommerce.exceptions.CustomException;
+import com.webtutsplus.ecommerce.enums.exceptions.AuthenticationFailException;
+import com.webtutsplus.ecommerce.enums.exceptions.CustomException;
 import com.webtutsplus.ecommerce.model.User;
 import com.webtutsplus.ecommerce.repository.UserRepository;
 import com.webtutsplus.ecommerce.service.AuthenticationService;
@@ -20,13 +20,10 @@ import java.util.List;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class UserController {
-
     @Autowired
     UserRepository userRepository;
-
     @Autowired
     AuthenticationService authenticationService;
-
     @Autowired
     UserService userService;
 
@@ -41,7 +38,6 @@ public class UserController {
         return userService.signUp(signupDto);
     }
 
-    //TODO token should be updated
     @PostMapping("/signIn")
     public SignInResponseDto Signup(@RequestBody SignInDto signInDto) throws CustomException {
         return userService.signIn(signInDto);

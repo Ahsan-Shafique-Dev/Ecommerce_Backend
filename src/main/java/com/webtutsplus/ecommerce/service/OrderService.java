@@ -7,7 +7,7 @@ import com.stripe.param.checkout.SessionCreateParams;
 import com.webtutsplus.ecommerce.dto.cart.CartDto;
 import com.webtutsplus.ecommerce.dto.cart.CartItemDto;
 import com.webtutsplus.ecommerce.dto.checkout.CheckoutItemDto;
-import com.webtutsplus.ecommerce.exceptions.OrderNotFoundException;
+import com.webtutsplus.ecommerce.enums.exceptions.OrderNotFoundException;
 import com.webtutsplus.ecommerce.model.Order;
 import com.webtutsplus.ecommerce.model.OrderItem;
 import com.webtutsplus.ecommerce.model.User;
@@ -78,7 +78,7 @@ public class OrderService {
 
     public void placeOrder(User user, String sessionId) {
         CartDto cartDto = cartService.listCartItems(user);
-        List<CartItemDto> cartItemDtoList = cartDto.getcartItems();
+        List<CartItemDto> cartItemDtoList = cartDto.getCartItems();
         Order newOrder = new Order();
         newOrder.setCreatedDate(new Date());
         newOrder.setSessionId(sessionId);

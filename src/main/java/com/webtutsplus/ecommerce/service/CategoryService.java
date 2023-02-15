@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import com.webtutsplus.ecommerce.model.Category;
@@ -12,13 +13,10 @@ import com.webtutsplus.ecommerce.repository.Categoryrepository;
 
 @Service
 @Transactional
+@AllArgsConstructor
 public class CategoryService {
 
-	private final Categoryrepository categoryrepository;
-
-	public CategoryService(Categoryrepository categoryrepository) {
-		this.categoryrepository = categoryrepository;
-	}
+	final Categoryrepository categoryrepository;
 
 	public List<Category> listCategories() {
 		return categoryrepository.findAll();
