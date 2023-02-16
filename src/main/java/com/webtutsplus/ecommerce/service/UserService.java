@@ -47,7 +47,7 @@ public class UserService {
             e.printStackTrace();
             logger.error("hashing password failed {}", e.getMessage());
         }
-        User user = new User(signupDto.getFirstName(), signupDto.getLastName(), signupDto.getEmail(), Role.USER, encryptedPassword);
+        User user = new User(signupDto.getFirstName(), signupDto.getLastName(), signupDto.getEmail(), Role.user, encryptedPassword);
         User createdUser;
         try {
             createdUser = userRepository.save(user);
@@ -115,7 +115,7 @@ public class UserService {
     }
 
     boolean canCrudUser(Role role) {
-        if (role == Role.ADMIN || role == Role.MANAGER) {
+        if (role == Role.admin || role == Role.manager) {
             return true;
         }
         return false;
@@ -123,10 +123,10 @@ public class UserService {
 
     boolean canCrudUser(User userUpdating, Integer userIdBeingUpdated) {
         Role role = userUpdating.getRole();
-        if (role == Role.ADMIN || role == Role.MANAGER) {
+        if (role == Role.admin || role == Role.manager) {
             return true;
         }
-        if (role == Role.USER && userUpdating.getId() == userIdBeingUpdated) {
+        if (role == Role.user && userUpdating.getId() == userIdBeingUpdated) {
             return true;
         }
         return false;
